@@ -1,7 +1,7 @@
 package com.example.wizelineproject.domain.repository
 
-import com.example.wizelineproject.domain.response.GenericArrayResponse
-import com.example.wizelineproject.domain.response.GenericObjectResponse
+import com.example.wizelineproject.domain.network.response.GenericArrayResponse
+import com.example.wizelineproject.domain.network.response.GenericObjectResponse
 import retrofit2.Retrofit
 import java.lang.Exception
 import javax.inject.Inject

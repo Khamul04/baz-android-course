@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
-import com.example.wizelineproject.R
-import com.example.wizelineproject.databinding.FragmentAsksBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wizelineproject.databinding.FragmentCoinsBinding
+import com.example.wizelineproject.screens.adapters.CoinsRecyclerAdapter
 import com.example.wizelineproject.viewmodel.CoinsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,9 +25,11 @@ class CoinsFragment @Inject constructor(): Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCoinsBinding.inflate(inflater,container,false);
+        binding.recycler.layoutManager = LinearLayoutManager(this.context)
         vModel.monedas.observe(this.viewLifecycleOwner){
             it.forEach {
                 Log.e("log", "book: "+it.book)
+                binding.recycler.adapter = CoinsRecyclerAdapter(vModel.monedas.value?: listOf())
             }
         }
         return binding.getRoot();

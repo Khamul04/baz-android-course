@@ -1,15 +1,15 @@
 package com.example.wizelineproject.screens
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import com.example.wizelineproject.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wizelineproject.databinding.FragmentAsksBinding
+import com.example.wizelineproject.screens.adapters.TransactionsRecyclerAdapter
 import com.example.wizelineproject.viewmodel.AsksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -25,16 +25,27 @@ class AsksFragment @Inject constructor(): Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAsksBinding.inflate(inflater,container,false);
-        vModel.asks.observe(this.viewLifecycleOwner){
-            it?.forEach {
-                Log.e("log", "Asks: "+it.toString())
-            }
+        initObservers()
+        binding.recyclerAsks.layoutManager = LinearLayoutManager(this.context)
+        binding.btnAsks.setOnClickListener {
+            vModel.getAsks(binding.autoCompleteAsks.text.toString())
         }
         return binding.getRoot();
     }
 
+    private fun initObservers(){
+        vModel.asks.observe(this.viewLifecycleOwner){
+            binding.recyclerAsks.adapter = TransactionsRecyclerAdapter(vModel.asks.value?: listOf())
+        }
+
+        vModel.names.observe(this.viewLifecycleOwner){
+            val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, vModel.names.value as MutableList<String>)
+            binding.autoCompleteAsks.setAdapter(arrayAdapter)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        vModel.getAsks("btc_mxn")
+        vModel.getBooksNames()
     }
 }

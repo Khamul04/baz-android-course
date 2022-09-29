@@ -1,10 +1,10 @@
-package com.example.wizelineproject.domain.response
+package com.example.wizelineproject.domain.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GenericObjectResponse<T>(
+data class GenericArrayResponse<T>(
     @SerializedName("success")
     val success:Boolean?,
     @SerializedName("payload")
-    val payload:T?
-)
+    val payload:List<T>?
+    )

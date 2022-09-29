@@ -1,4 +1,4 @@
-package com.example.wizelineproject.domain.repository
+package com.example.wizelineproject.domain.network.interceptors
 
 import android.util.Log
 import okhttp3.Interceptor
