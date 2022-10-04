@@ -1,15 +1,14 @@
 package com.example.wizelineproject.modules
 
-import android.util.Log
-import com.example.wizelineproject.domain.repository.CriptosRepository
-import com.example.wizelineproject.domain.repository.GenericRepository
-import com.example.wizelineproject.domain.repository.HttpLogginInterceptorStock
-import com.example.wizelineproject.domain.service.CriptomonedasServices
+import com.example.wizelineproject.domain.database.StocksDatabase
+import com.example.wizelineproject.domain.database.dao.BooksDao
+import com.example.wizelineproject.domain.network.interceptors.HttpLogginInterceptorStock
+import com.example.wizelineproject.domain.network.service.CriptomonedasServices
+import com.example.wizelineproject.domain.repository.BooksRepository
+import com.example.wizelineproject.domain.repository.TransactionsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [DatabaseModule::class])
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
@@ -48,9 +47,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCriptosRepositoryRepository(retrofit:Retrofit, criptomonedasServices: CriptomonedasServices):CriptosRepository{
-        val repo = CriptosRepository()
-        repo.configRepository(retrofit, criptomonedasServices)
+    fun provideBooksRepository(retrofit:Retrofit, criptomonedasServices: CriptomonedasServices, dao:BooksDao):BooksRepository{
+        val repo = BooksRepository()
+        repo.configRepository(retrofit, criptomonedasServices, dao)
+        return repo
+    }
+
+    @Singleton
+    @Provides
+    fun provideTransactionsRepository(retrofit:Retrofit, criptomonedasServices: CriptomonedasServices, dao:BooksDao): TransactionsRepository {
+        val repo = TransactionsRepository()
+        repo.configRepository(retrofit, criptomonedasServices, dao)
         return repo
     }
 }

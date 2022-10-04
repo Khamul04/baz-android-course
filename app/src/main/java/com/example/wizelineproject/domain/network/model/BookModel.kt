@@ -1,8 +1,9 @@
-package com.example.wizelineproject.domain.model
+package com.example.wizelineproject.domain.network.model
 
+import com.example.wizelineproject.domain.database.entities.BooksEntity
 import com.google.gson.annotations.SerializedName
 
-data class Book(
+data class BookModel(
                 @SerializedName("book")
                 val book:String,
                 @SerializedName("minimum_amount")
@@ -18,3 +19,7 @@ data class Book(
                 @SerializedName("maximum_value")
                 val maximum_value:String
 )
+
+fun BookModel.toBookEntity():BooksEntity{
+    return BooksEntity(book, minimum_amount, maximum_amount, minimum_price, maximum_price, minimum_value, minimum_price)
+}

@@ -1,4 +1,4 @@
-package com.example.wizelineproject.domain.model
+package com.example.wizelineproject.domain.network.model
 
 import com.google.gson.annotations.SerializedName
 
