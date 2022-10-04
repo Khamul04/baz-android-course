@@ -28,6 +28,18 @@ class CoinViewHolder(view: View):RecyclerView.ViewHolder(view), View.OnClickList
             prefix = R.drawable.ethereum
         else if(book.book.startsWith("usd"))
             prefix = R.drawable.dolar
+        else if(book.book.startsWith("ltc"))
+            prefix = R.drawable.ltc
+        else if(book.book.startsWith("xrp"))
+            prefix = R.drawable.xrp
+        else if(book.book.startsWith("bch"))
+            prefix = R.drawable.bch
+        else if(book.book.startsWith("bat"))
+            prefix = R.drawable.bat
+        else if(book.book.startsWith("mana"))
+            prefix = R.drawable.mana
+        else if(book.book.startsWith("tusd"))
+            prefix = R.drawable.tusd
         else
             prefix = R.drawable.coin_generic
 
