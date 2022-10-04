@@ -29,13 +29,13 @@ class BooksRepository: GenericRepository<CriptomonedasServices>(){
         }
     }
 
-    /*suspend fun getTicker(book:String, callback: (success:Boolean, data: Ticker?)->Unit){
+    suspend fun getTicker(book:String, callback: (success:Boolean, data: Ticker?)->Unit){
         getResponseWithObject({
             api.getTickers(book)
         }){ success: Boolean, data: Ticker? ->
             callback(success, data)
         }
-    }*/
+    }
 
     /*suspend fun getTransactions(book:String, callback: (success: Boolean, data: OrderBook?) -> Unit){
         getResponseWithObject({
