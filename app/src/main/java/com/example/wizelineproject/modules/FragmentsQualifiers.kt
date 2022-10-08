@@ -13,3 +13,7 @@ annotation class BidsFragmentAnnotation
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class CoinsFragmentAnnotation
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MainFragmentAnnotation

@@ -18,8 +18,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.viewPager.adapter = viewPagerAdapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        //binding.viewPager.adapter = viewPagerAdapter
+        //binding.tabLayout.setupWithViewPager(binding.viewPager)
 
     }
 }
+
+
+/*
+*
+*
+* */

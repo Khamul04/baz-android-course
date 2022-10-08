@@ -16,7 +16,8 @@ class TransactionViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun render(transaction: TransactionModel) {
         lblName.text = transaction.book
-        lblPrice.text = "$"+transaction.price
+        val stringToText = "$"+transaction.price
+        lblPrice.text = stringToText
         lblAmount.text = transaction.amount
     }
 }

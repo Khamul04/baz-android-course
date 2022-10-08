@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.wizelineproject.screens.AsksFragment
 import com.example.wizelineproject.screens.BidsFragment
 import com.example.wizelineproject.screens.CoinsFragment
+import com.example.wizelineproject.screens.MainFragment
 import com.example.wizelineproject.screens.adapters.ViewPagerAdapter
 import dagger.Binds
 import dagger.Module
@@ -32,6 +33,9 @@ abstract class ViewsModule {
     @CoinsFragmentAnnotation
     abstract fun provideCoinsFragment(coinsFragment: CoinsFragment): Fragment;
 
+    @Binds
+    @MainFragmentAnnotation
+    abstract fun provideMainFragment(mainFragment: MainFragment): Fragment;
 
     @Module
     @InstallIn(ActivityComponent::class)

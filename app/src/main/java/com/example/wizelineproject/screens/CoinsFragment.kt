@@ -40,3 +40,7 @@ class CoinsFragment @Inject constructor(): Fragment() {
         vModel.getBooks()
     }
 }
+
+/*
+
+ */
