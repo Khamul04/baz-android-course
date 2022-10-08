@@ -1,6 +1,5 @@
 package com.example.wizelineproject.modules
 
-import com.example.wizelineproject.domain.database.StocksDatabase
 import com.example.wizelineproject.domain.database.dao.BooksDao
 import com.example.wizelineproject.domain.network.interceptors.HttpLogginInterceptorStock
 import com.example.wizelineproject.domain.network.service.CriptomonedasServices
@@ -22,16 +21,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient():OkHttpClient{
-        val interceptor = HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    fun providesOkHttpClient(): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val interceptorPropio = HttpLogginInterceptorStock()
-        return OkHttpClient.Builder().addInterceptor(interceptorPropio).addInterceptor(interceptor).build();
+        return OkHttpClient.Builder().addInterceptor(interceptorPropio).addInterceptor(interceptor)
+            .build()
     }
 
     @Singleton
     @Provides
-    fun provideRetrofit(httpClient:OkHttpClient):Retrofit{
+    fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(httpClient)
             .baseUrl("https://api.bitso.com/v3/")
@@ -41,13 +41,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provoidesCriptomonedasServices(retrofit:Retrofit):CriptomonedasServices{
+    fun provoidesCriptomonedasServices(retrofit: Retrofit): CriptomonedasServices {
         return retrofit.create(CriptomonedasServices::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideBooksRepository(retrofit:Retrofit, criptomonedasServices: CriptomonedasServices, dao:BooksDao):BooksRepository{
+    fun provideBooksRepository(
+        retrofit: Retrofit,
+        criptomonedasServices: CriptomonedasServices,
+        dao: BooksDao
+    ): BooksRepository {
         val repo = BooksRepository()
         repo.configRepository(retrofit, criptomonedasServices, dao)
         return repo
@@ -55,7 +59,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideTransactionsRepository(retrofit:Retrofit, criptomonedasServices: CriptomonedasServices, dao:BooksDao): TransactionsRepository {
+    fun provideTransactionsRepository(
+        retrofit: Retrofit,
+        criptomonedasServices: CriptomonedasServices,
+        dao: BooksDao
+    ): TransactionsRepository {
         val repo = TransactionsRepository()
         repo.configRepository(retrofit, criptomonedasServices, dao)
         return repo

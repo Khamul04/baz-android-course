@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Book" />
+        android:text="@string/book" />
 
     <TextView
         android:id="@+id/lblBook"
@@ -31,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Volume" />
+        android:text="@string/volume" />
 
     <TextView
         android:id="@+id/lblVolume"
@@ -49,7 +48,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="High" />
+        android:text="@string/high" />
 
     <TextView
         android:id="@+id/lblHigh"
@@ -67,7 +66,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Low" />
+        android:text="@string/low" />
 
     <TextView
         android:id="@+id/lblLow"
@@ -85,7 +84,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Last" />
+        android:text="@string/last" />
 
     <TextView
         android:id="@+id/lblLast"

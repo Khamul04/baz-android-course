@@ -13,7 +13,7 @@ interface BooksDao {
     suspend fun getAlphabetizedBooks(): List<BooksEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAll(books:List<BooksEntity>)
+    suspend fun insertAll(books: List<BooksEntity>)
 
     @Query("DELETE FROM books_table")
     suspend fun deleteAll()

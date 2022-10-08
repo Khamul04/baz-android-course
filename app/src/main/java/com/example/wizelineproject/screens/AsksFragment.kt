@@ -15,31 +15,36 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AsksFragment @Inject constructor(): Fragment() {
+class AsksFragment @Inject constructor() : Fragment() {
 
     private val vModel: AsksViewModel by viewModels()
-    private lateinit var binding:FragmentAsksBinding
+    private lateinit var binding: FragmentAsksBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentAsksBinding.inflate(inflater,container,false);
+    ): View {
+        binding = FragmentAsksBinding.inflate(inflater, container, false)
         initObservers()
         binding.recyclerAsks.layoutManager = LinearLayoutManager(this.context)
         binding.btnAsks.setOnClickListener {
             vModel.getAsks(binding.autoCompleteAsks.text.toString())
         }
-        return binding.getRoot();
+        return binding.root
     }
 
-    private fun initObservers(){
-        vModel.asks.observe(this.viewLifecycleOwner){
-            binding.recyclerAsks.adapter = TransactionsRecyclerAdapter(vModel.asks.value?: listOf())
+    private fun initObservers() {
+        vModel.asks.observe(this.viewLifecycleOwner) {
+            binding.recyclerAsks.adapter =
+                TransactionsRecyclerAdapter(vModel.asks.value ?: listOf())
         }
 
-        vModel.names.observe(this.viewLifecycleOwner){
-            val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, vModel.names.value as MutableList<String>)
+        vModel.names.observe(this.viewLifecycleOwner) {
+            val arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                vModel.names.value as MutableList<String>
+            )
             binding.autoCompleteAsks.setAdapter(arrayAdapter)
         }
     }

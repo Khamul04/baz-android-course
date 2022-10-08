@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wizelineproject.domain.network.model.BookModel
-import com.example.wizelineproject.domain.network.model.Ticker
 import com.example.wizelineproject.domain.repository.BooksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,31 +13,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinsListViewModel @Inject constructor(): ViewModel() {
+class CoinsListViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var repository: BooksRepository
 
     private var _monedas = MutableLiveData<List<BookModel>>()
-    val monedas =  _monedas
+    val monedas = _monedas
 
-    //private val _ticker = MutableLiveData<Ticker>()
-    //val ticker = _ticker
-
-    /*fun getTicker(ticker:String){
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.getTicker(ticker){ success, data ->
-                if(success){
-                    _ticker.postValue(data)
-                } else{
-                    Log.e("log", "FALLO getTicker ViewModel")
-                }
-            }
-        }
-    }*/
-
-    fun getBooks(){
-        /*viewModelScope.launch {  }*/
+    fun getBooks() {
         viewModelScope.launch {
             repository.getBooksFromNetwork { success, data ->
                 if (success) {
@@ -51,5 +34,4 @@ class CoinsListViewModel @Inject constructor(): ViewModel() {
             }
         }
     }
-
 }

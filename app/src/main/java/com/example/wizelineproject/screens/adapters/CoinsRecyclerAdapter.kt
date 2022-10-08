@@ -1,14 +1,9 @@
 package com.example.wizelineproject.screens.adapters
 
-import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
-import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wizelineproject.R
@@ -17,37 +12,35 @@ import com.example.wizelineproject.screens.viewholders.CoinViewHolder
 import com.example.wizelineproject.utils.getFirstCurrencyName
 import com.example.wizelineproject.utils.getSecondCurrencyName
 
-
-class CoinsRecyclerAdapter(val books: List<BookModel>) : RecyclerView.Adapter<CoinViewHolder>() {
+class CoinsRecyclerAdapter(private val books: List<BookModel>) :
+    RecyclerView.Adapter<CoinViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.coins_item, parent, false)
-        view.setOnClickListener {
-            darClick()
-        }
+
         return CoinViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
-        val item = books.get(position)
+        val item = books[position]
         holder.itemView.setOnClickListener {
             val sharedPref = ((it.context as ContextWrapper).baseContext).getSharedPreferences(
                 "DETAILS",
                 Context.MODE_PRIVATE
             )
             with(sharedPref.edit()) {
-                putString("book", books.get(position).book)
+                putString("book", books[position].book)
                 apply()
             }
             Navigation.findNavController(it).navigate(R.id.detailsActivity)
         }
         var idFirst = holder.itemView.context.resources.getIdentifier(
-            books.get(position).book.getFirstCurrencyName(),
+            books[position].book.getFirstCurrencyName(),
             "drawable",
             holder.itemView.context.packageName
         )
-        if(idFirst == 0)
+        if (idFirst == 0)
             idFirst = holder.itemView.context.resources.getIdentifier(
                 "coin_generic",
                 "drawable",
@@ -55,11 +48,11 @@ class CoinsRecyclerAdapter(val books: List<BookModel>) : RecyclerView.Adapter<Co
             )
 
         var idSecond = holder.itemView.context.resources.getIdentifier(
-            books.get(position).book.getSecondCurrencyName(),
+            books[position].book.getSecondCurrencyName(),
             "drawable",
             holder.itemView.context.packageName
         )
-        if(idSecond == 0) {
+        if (idSecond == 0) {
             idSecond = holder.itemView.context.resources.getIdentifier(
                 "coin_generic",
                 "drawable",
@@ -74,7 +67,4 @@ class CoinsRecyclerAdapter(val books: List<BookModel>) : RecyclerView.Adapter<Co
         return books.size
     }
 
-    private fun darClick() {
-
-    }
 }

@@ -4,26 +4,26 @@ import com.google.gson.annotations.SerializedName
 
 data class Ticker(
     @SerializedName("book")
-    val book:String,
+    val book: String,
     @SerializedName("volume")
-    val volume:String,
+    val volume: String,
     @SerializedName("high")
-    val high:String,
+    val high: String,
     @SerializedName("last")
-    val last:String,
+    val last: String,
     @SerializedName("low")
-    val low:String,
+    val low: String,
     @SerializedName("vwap")
-    val vwap:String,
+    val vwap: String,
     @SerializedName("ask")
-    val ask:String,
+    val ask: String,
     @SerializedName("bid")
-    val bid:String,
+    val bid: String,
     @SerializedName("created_at")
-    val createAt:String
-){
+    val createAt: String
+) {
     override fun toString(): String {
-        return "["+book+", \n"+volume+", \n"+high+", \n"+last+", \n"+low+", \n"+vwap+", \n"+ask+", \n"+bid+", \n"+createAt+"]"
+        return "[" + book + ", \n" + volume + ", \n" + high + ", \n" + last + ", \n" + low + ", \n" + vwap + ", \n" + ask + ", \n" + bid + ", \n" + createAt + "]"
 
     }
 }

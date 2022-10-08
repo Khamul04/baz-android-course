@@ -6,10 +6,11 @@ import retrofit2.Retrofit
 import java.lang.Exception
 import javax.inject.Inject
 
-abstract class GenericRepository<T : Any>() {
+abstract class GenericRepository<T : Any> {
 
     @Inject
     lateinit var client: Retrofit
+
     @Inject
     open lateinit var api: T
 
@@ -21,9 +22,9 @@ abstract class GenericRepository<T : Any>() {
             val call = callService()
             call?.let {
                 call.payload?.let {
-                    if (call.payload.size > 0) {
+                    if (call.payload.isNotEmpty()) {
                         call.success?.let {
-                            if (call.success.equals(true)) {
+                            if (call.success == true) {
                                 callback(true, call.payload)
                                 return@getResponseWithArray
                             }
@@ -31,10 +32,10 @@ abstract class GenericRepository<T : Any>() {
                     }
                 }
             }
-            var filler = ArrayList<K>()
+            val filler = ArrayList<K>()
             callback(false, filler)
-        }catch (e:Exception){
-            var filler = ArrayList<K>()
+        } catch (e: Exception) {
+            val filler = ArrayList<K>()
             callback(false, filler)
         }
     }
@@ -48,7 +49,7 @@ abstract class GenericRepository<T : Any>() {
             call?.let {
                 call.payload?.let {
                     call.success?.let {
-                        if (call.success.equals(true)) {
+                        if (call.success == true) {
                             callback(true, call.payload)
                             return@getResponseWithObject
                         }
@@ -56,9 +57,8 @@ abstract class GenericRepository<T : Any>() {
                 }
             }
             callback(false, null)
-        }catch (e:Exception){
+        } catch (e: Exception) {
             callback(false, null)
         }
     }
-
 }

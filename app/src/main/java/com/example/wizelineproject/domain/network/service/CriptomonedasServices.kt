@@ -14,9 +14,9 @@ interface CriptomonedasServices {
     suspend fun getBooks(): GenericArrayResponse<BookModel>?
 
     @GET("ticker")
-    suspend fun getTickers(@Query("book")book:String): GenericObjectResponse<Ticker>?
+    suspend fun getTickers(@Query("book") book: String): GenericObjectResponse<Ticker>?
 
     @GET("order_book")
-    suspend fun getBookOrders(@Query("book")book:String): GenericObjectResponse<OrderBook>?
+    suspend fun getBookOrders(@Query("book") book: String): GenericObjectResponse<OrderBook>?
 
 }
