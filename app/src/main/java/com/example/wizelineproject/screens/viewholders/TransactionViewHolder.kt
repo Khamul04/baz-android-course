@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wizelineproject.R
 import com.example.wizelineproject.domain.network.model.BookModel
 import com.example.wizelineproject.domain.network.model.TransactionModel
+import com.example.wizelineproject.utils.addCurrencySymbol
 
 class TransactionViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -16,7 +17,7 @@ class TransactionViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun render(transaction: TransactionModel) {
         lblName.text = transaction.book
-        val stringToText = "$"+transaction.price
+        val stringToText = transaction.price.addCurrencySymbol()
         lblPrice.text = stringToText
         lblAmount.text = transaction.amount
     }

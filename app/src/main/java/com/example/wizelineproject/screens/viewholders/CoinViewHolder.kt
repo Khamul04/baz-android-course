@@ -1,5 +1,6 @@
 package com.example.wizelineproject.screens.viewholders
 
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -18,46 +19,9 @@ class CoinViewHolder(view: View):RecyclerView.ViewHolder(view), View.OnClickList
         view.setOnClickListener(this)
     }
 
-    fun render(book: BookModel){
-        var prefix:Int
-        if(book.book.startsWith("btc"))
-            prefix = R.drawable.bitcoin
-        else if(book.book.startsWith("mxn"))
-            prefix = R.drawable.peso
-        else if(book.book.startsWith("eth"))
-            prefix = R.drawable.ethereum
-        else if(book.book.startsWith("usd"))
-            prefix = R.drawable.dolar
-        else if(book.book.startsWith("ltc"))
-            prefix = R.drawable.ltc
-        else if(book.book.startsWith("xrp"))
-            prefix = R.drawable.xrp
-        else if(book.book.startsWith("bch"))
-            prefix = R.drawable.bch
-        else if(book.book.startsWith("bat"))
-            prefix = R.drawable.bat
-        else if(book.book.startsWith("mana"))
-            prefix = R.drawable.mana
-        else if(book.book.startsWith("tusd"))
-            prefix = R.drawable.tusd
-        else
-            prefix = R.drawable.coin_generic
-
-        var suffix:Int
-        if(book.book.endsWith("btc"))
-            suffix = R.drawable.bitcoin
-        else if(book.book.endsWith("mxn"))
-            suffix = R.drawable.peso
-        else if(book.book.endsWith("eth"))
-            suffix = R.drawable.ethereum
-        else if(book.book.endsWith("usd"))
-            suffix = R.drawable.dolar
-        else
-            suffix = R.drawable.coin_generic
-
-
-        firstCoin.setBackgroundResource(prefix)
-        secondCoin.setBackgroundResource(suffix)
+    fun render(book: BookModel, firstCoinId: Int, secondCoinId:Int){
+        firstCoin.setBackgroundResource(firstCoinId)
+        secondCoin.setBackgroundResource(secondCoinId)
         text.text = book.book
     }
 
