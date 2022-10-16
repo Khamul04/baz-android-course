@@ -5,6 +5,7 @@ import com.example.wizelineproject.domain.network.model.OrderBook
 import com.example.wizelineproject.domain.network.model.Ticker
 import com.example.wizelineproject.domain.network.response.GenericArrayResponse
 import com.example.wizelineproject.domain.network.response.GenericObjectResponse
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -19,4 +20,6 @@ interface CriptomonedasServices {
     @GET("order_book")
     suspend fun getBookOrders(@Query("book") book: String): GenericObjectResponse<OrderBook>?
 
+    @GET("ticker")
+    fun getTickerWithRx(@Query("book") book: String): Single<GenericObjectResponse<Ticker>?>
 }

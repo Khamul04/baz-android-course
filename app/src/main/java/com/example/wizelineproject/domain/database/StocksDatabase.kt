@@ -10,5 +10,4 @@ import com.example.wizelineproject.domain.database.entities.BooksEntity
 abstract class StocksDatabase : RoomDatabase() {
 
     abstract fun getBooksDao(): BooksDao
-
 }

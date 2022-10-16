@@ -18,5 +18,4 @@ class CoinViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         secondCoin.setBackgroundResource(secondCoinId)
         text.text = book.book
     }
-
 }

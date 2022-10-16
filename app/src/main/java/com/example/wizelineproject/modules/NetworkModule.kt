@@ -5,10 +5,12 @@ import com.example.wizelineproject.domain.network.interceptors.HttpLogginInterce
 import com.example.wizelineproject.domain.network.service.CriptomonedasServices
 import com.example.wizelineproject.domain.repository.BooksRepository
 import com.example.wizelineproject.domain.repository.TransactionsRepository
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.reactivex.disposables.CompositeDisposable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,6 +38,7 @@ object NetworkModule {
             .client(httpClient)
             .baseUrl("https://api.bitso.com/v3/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
@@ -50,11 +53,18 @@ object NetworkModule {
     fun provideBooksRepository(
         retrofit: Retrofit,
         criptomonedasServices: CriptomonedasServices,
-        dao: BooksDao
+        dao: BooksDao,
+        disposable: CompositeDisposable
     ): BooksRepository {
         val repo = BooksRepository()
-        repo.configRepository(retrofit, criptomonedasServices, dao)
+        repo.configRepository(retrofit, criptomonedasServices, dao, disposable)
         return repo
+    }
+
+    @Singleton
+    @Provides
+    fun provideCompositeDisposable(): CompositeDisposable {
+        return CompositeDisposable()
     }
 
     @Singleton

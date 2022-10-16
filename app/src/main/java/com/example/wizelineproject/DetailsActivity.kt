@@ -1,10 +1,10 @@
 package com.example.wizelineproject
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import androidx.appcompat.app.AppCompatActivity
 import com.example.wizelineproject.databinding.ActivityDetailsBinding
 import com.example.wizelineproject.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint

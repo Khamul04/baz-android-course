@@ -24,6 +24,5 @@ data class Ticker(
 ) {
     override fun toString(): String {
         return "[" + book + ", \n" + volume + ", \n" + high + ", \n" + last + ", \n" + low + ", \n" + vwap + ", \n" + ask + ", \n" + bid + ", \n" + createAt + "]"
-
     }
 }

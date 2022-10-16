@@ -15,4 +15,3 @@ fun String.getSecondCurrencyName(): String {
     if (strings.size != 2) return ""
     return strings[1]
 }
-

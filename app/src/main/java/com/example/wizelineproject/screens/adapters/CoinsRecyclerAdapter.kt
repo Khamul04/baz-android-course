@@ -66,5 +66,4 @@ class CoinsRecyclerAdapter(private val books: List<BookModel>) :
     override fun getItemCount(): Int {
         return books.size
     }
-
 }

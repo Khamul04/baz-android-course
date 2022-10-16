@@ -1,7 +1,7 @@
 package com.example.wizelineproject
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.wizelineproject.databinding.ActivityMainBinding
 import com.example.wizelineproject.screens.adapters.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint

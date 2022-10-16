@@ -17,5 +17,4 @@ interface BooksDao {
 
     @Query("DELETE FROM books_table")
     suspend fun deleteAll()
-
 }
