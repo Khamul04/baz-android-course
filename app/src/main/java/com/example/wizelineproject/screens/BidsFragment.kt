@@ -1,51 +1,51 @@
 package com.example.wizelineproject.screens
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wizelineproject.R
-import com.example.wizelineproject.databinding.FragmentAsksBinding
 import com.example.wizelineproject.databinding.FragmentBidsBinding
-import com.example.wizelineproject.databinding.FragmentCoinsBinding
 import com.example.wizelineproject.screens.adapters.TransactionsRecyclerAdapter
-import com.example.wizelineproject.viewmodel.AsksViewModel
 import com.example.wizelineproject.viewmodel.BidsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BidsFragment @Inject constructor(): Fragment() {
+class BidsFragment @Inject constructor() : Fragment() {
 
     private val vModel: BidsViewModel by viewModels()
     private lateinit var binding: FragmentBidsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentBidsBinding.inflate(inflater,container,false);
+    ): View {
+        binding = FragmentBidsBinding.inflate(inflater, container, false)
         initObservers()
         binding.recyclerBids.layoutManager = LinearLayoutManager(this.context)
         binding.btnBids.setOnClickListener {
             vModel.getBids(binding.autoCompleteBids.text.toString())
         }
-        return binding.getRoot();
+        return binding.root
     }
 
-    private fun initObservers(){
-        vModel.bids.observe(this.viewLifecycleOwner){
-                binding.recyclerBids.adapter = TransactionsRecyclerAdapter(vModel.bids.value?: listOf())
+    private fun initObservers() {
+        vModel.bids.observe(this.viewLifecycleOwner) {
+            binding.recyclerBids.adapter =
+                TransactionsRecyclerAdapter(vModel.bids.value ?: listOf())
         }
 
-        vModel.names.observe(this.viewLifecycleOwner){
-            val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, vModel.names.value as MutableList<String>)
+        vModel.names.observe(this.viewLifecycleOwner) {
+            val arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                vModel.names.value as MutableList<String>
+            )
             binding.autoCompleteBids.setAdapter(arrayAdapter)
         }
     }
@@ -54,5 +54,4 @@ class BidsFragment @Inject constructor(): Fragment() {
         super.onResume()
         vModel.getBooksNames()
     }
-
 }

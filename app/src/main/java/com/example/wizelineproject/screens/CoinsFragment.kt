@@ -1,11 +1,10 @@
 package com.example.wizelineproject.screens
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wizelineproject.databinding.FragmentCoinsBinding
@@ -15,24 +14,22 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CoinsFragment @Inject constructor(): Fragment() {
+class CoinsFragment @Inject constructor() : Fragment() {
 
     private val vModel: CoinsListViewModel by viewModels()
     private lateinit var binding: FragmentCoinsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCoinsBinding.inflate(inflater,container,false);
+    ): View {
+        binding = FragmentCoinsBinding.inflate(inflater, container, false)
         binding.recycler.layoutManager = LinearLayoutManager(this.context)
-        vModel.monedas.observe(this.viewLifecycleOwner){
-            it.forEach {
-                Log.e("log", "book: "+it.book)
-                binding.recycler.adapter = CoinsRecyclerAdapter(vModel.monedas.value?: listOf())
-            }
+        vModel.monedas.observe(this.viewLifecycleOwner) {
+            binding.recycler.adapter = CoinsRecyclerAdapter(vModel.monedas.value ?: listOf())
         }
-        return binding.getRoot();
+        return binding.root
     }
 
     override fun onResume() {
@@ -40,7 +37,3 @@ class CoinsFragment @Inject constructor(): Fragment() {
         vModel.getBooks()
     }
 }
-
-/*
-
- */

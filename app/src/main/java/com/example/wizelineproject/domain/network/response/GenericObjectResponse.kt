@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GenericObjectResponse<T>(
     @SerializedName("success")
-    val success:Boolean?,
+    val success: Boolean?,
     @SerializedName("payload")
-    val payload:T?
+    val payload: T?
 )

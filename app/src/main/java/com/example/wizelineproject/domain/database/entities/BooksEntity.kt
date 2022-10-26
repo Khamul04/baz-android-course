@@ -3,7 +3,6 @@ package com.example.wizelineproject.domain.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "books_table")
 data class BooksEntity(

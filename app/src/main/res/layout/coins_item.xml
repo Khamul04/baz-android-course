@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@drawable/dolar" />
+        tools:srcCompat="@drawable/usd" />
 <!--app:layout_constraintEnd_toStartOf="@id/lblName" -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgCoinTwo"
@@ -30,13 +30,12 @@
         app:layout_constraintStart_toEndOf="@id/imgCoinOne"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@drawable/peso" />
+        tools:srcCompat="@drawable/mxn" />
 
     <TextView
         android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="btc_mxn"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

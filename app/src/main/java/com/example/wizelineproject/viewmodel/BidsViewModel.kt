@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BidsViewModel @Inject constructor(): ViewModel() {
+class BidsViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var repository: TransactionsRepository
@@ -24,19 +24,19 @@ class BidsViewModel @Inject constructor(): ViewModel() {
     private val _names = MutableLiveData<List<String>?>()
     var names = _names
 
-    fun getBids(book:String){
+    fun getBids(book: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getTransactions(book) { success, data ->
                 if (success) {
                     _bids.postValue(data?.bids)
                 } else
-                    Log.e("log", "FALLO getBids ViewModel")
+                    Log.e("log", "FAIL getBids ViewModel")
             }
         }
     }
 
-    fun getBooksNames(){
-        var namesLocal = mutableListOf<String>()
+    fun getBooksNames() {
+        val namesLocal = mutableListOf<String>()
         viewModelScope.launch {
             val listNames = repository.getBooksFromDatabase()
             listNames.forEach {
@@ -45,5 +45,4 @@ class BidsViewModel @Inject constructor(): ViewModel() {
             _names.postValue(namesLocal)
         }
     }
-
 }
